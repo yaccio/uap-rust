@@ -1,0 +1,7 @@
+[package]
+name = "uap-rust"
+version = "0.1.0"
+authors = ["Martin <martin@yacc.io>"]
+
+[dependencies]
+yaml-rust = "0.3.0"
