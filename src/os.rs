@@ -1,5 +1,5 @@
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct OS {
     pub family: String,
     pub major: Option<String>,

@@ -1,9 +1,9 @@
-use yaml_rust::{Yaml, YamlLoader, YamlEmitter};
+use yaml_rust::{Yaml};
 use yaml;
 use regex::Regex;
 
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct UserAgent {
     pub family: String,
     pub major: Option<String>,
