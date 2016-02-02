@@ -1,3 +1,5 @@
+
+#[derive(Debug)]
 pub struct OS {
     pub family: String,
     pub major: Option<String>,

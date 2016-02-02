@@ -1,4 +1,5 @@
 extern crate yaml_rust;
+extern crate regex;
 
 mod parser;
 mod client;
@@ -6,13 +7,16 @@ mod ua;
 mod os;
 mod device;
 mod result;
+mod yaml;
 
 #[cfg(test)]
 mod test {
     use parser;
     #[test]
     fn basic_au_test() {
-        let ua = "Mozilla/5.0 (iPhone; CPU iPhone OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3".to_string();
+        let agent = "Mozilla/5.0 (Windows; Windows NT 5.1; rv:2.0b3pre) Gecko/20100727 Minefield/4.0.1pre".to_string();
         let p = parser::Parser::new("uap-core/regexes.yaml").unwrap();
+        let c = p.parse(agent);
+        println!("{:?}", c);
     }
 }

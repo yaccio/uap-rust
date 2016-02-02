@@ -1,3 +1,5 @@
+
+#[derive(Debug)]
 pub struct Device {
-    family: String,
+    pub family: String,
 }
