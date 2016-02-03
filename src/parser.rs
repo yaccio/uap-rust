@@ -5,7 +5,7 @@ use yaml_rust::{YamlLoader};
 use client::{Client};
 use ua::{UserAgent, UserAgentParser};
 use device::{Device, DeviceParser};
-use os::{OS};
+use os::{OS, OSParser};
 use result::*;
 use yaml;
 
@@ -13,7 +13,7 @@ use yaml;
 pub struct Parser {
     pub ua_regex: Vec<UserAgentParser>,
     pub devices_regex: Vec<DeviceParser>,
-    pub os: Vec<String>,
+    pub os_regex: Vec<OSParser>,
 }
 
 impl Parser {
@@ -28,7 +28,8 @@ impl Parser {
                 .map(|y| yaml::map_over_arr(y, DeviceParser::from_yaml)).unwrap(),
             ua_regex: yaml::from_map(&docs[0],"user_agent_parsers")
                 .map(|y| yaml::map_over_arr(y, UserAgentParser::from_yaml)).unwrap(),
-            os: Vec::new(),
+            os_regex: yaml::from_map(&docs[0],"os_parsers")
+                .map(|y| yaml::map_over_arr(y, OSParser::from_yaml)).unwrap(),
         };
         Ok(p)
     }
@@ -46,13 +47,14 @@ impl Parser {
         let d = dev.unwrap_or(Device {
             family: "Other".to_string(),
         });
-        let o = OS {
+        let oss = self.os_regex.iter().filter_map(|d| d.parse(agent.clone())).next();
+        let o = oss.unwrap_or(OS {
             family: "Other".to_string(),
             major: None,
             minor: None,
             patch: None,
             patch_minor: None,
-        };
+        });
         Client {
             user_agent: u,
             os: o,
