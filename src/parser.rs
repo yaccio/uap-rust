@@ -46,6 +46,8 @@ impl Parser {
         let dev = self.devices_regex.iter().filter_map(|d| d.parse(agent.clone())).next();
         let d = dev.unwrap_or(Device {
             family: "Other".to_string(),
+            model: None,
+            brand: None,
         });
         let oss = self.os_regex.iter().filter_map(|d| d.parse(agent.clone())).next();
         let o = oss.unwrap_or(OS {

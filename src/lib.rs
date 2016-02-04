@@ -29,7 +29,9 @@ mod test {
                 patch: None,
             },
             device: Device {
-                family: "iPhone".to_string()
+                family: "iPhone".to_string(),
+                brand: Some("Apple".to_string()),
+                model: Some("iPhone".to_string()),
             },
             os: OS {
                 family: "iOS".to_string(),
