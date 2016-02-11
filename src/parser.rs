@@ -17,11 +17,15 @@ pub struct Parser {
 }
 
 impl Parser {
-    pub fn new(regexes_file: &str) -> Result<Parser> {
+    pub fn from_file(regexes_file: &str) -> Result<Parser> {
         let mut file = try!(File::open(regexes_file));
         let mut yaml = String::new();
         let _ = file.read_to_string(&mut yaml);
-        let docs = try!(YamlLoader::load_from_str(&yaml));
+        Parser::from_str(&yaml)
+    }
+
+    pub fn from_str(s: &str) -> Result<Parser> {
+        let docs = try!(YamlLoader::load_from_str(&s));
 
         let p = Parser {
             devices_regex: yaml::from_map(&docs[0],"device_parsers")
@@ -32,6 +36,11 @@ impl Parser {
                 .map(|y| yaml::map_over_arr(y, OSParser::from_yaml)).unwrap(),
         };
         Ok(p)
+    }
+
+    pub fn new() -> Result<Parser> {
+        let s = include_str!("uap-core/regexes.yaml");
+        Parser::from_str(&s)
     }
 
     pub fn parse(&self, agent: String) -> Client {
