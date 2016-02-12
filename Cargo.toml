@@ -2,6 +2,8 @@
 name = "uap-rust"
 version = "0.0.1"
 authors = ["Martin <martin@yacc.io>"]
+description = "User agent parser library for Rust based on the ua-parser project"
+
 license = "MIT"
 license-file = "LICENSE"
 readme = "README.md"

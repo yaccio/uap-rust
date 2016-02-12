@@ -1,6 +1,6 @@
 #ua-parser for rust
-This is a user agent parser for Rust based on
-[ua-parser](https://github.com/ua-parser).
+User agent parser library for Rust based on the
+[ua-parser](https://github.com/ua-parser) project.
 
 ##Usage example
 
