@@ -1,7 +1,12 @@
 [package]
 name = "uap-rust"
-version = "0.1.0"
+version = "0.0.1"
 authors = ["Martin <martin@yacc.io>"]
+license = "MIT"
+license-file = "LICENSE"
+readme = "README.md"
+repository = "https://github.com/yaccio/uap-rust"
+
 
 [dependencies]
 yaml-rust = "0.3"
