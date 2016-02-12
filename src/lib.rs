@@ -1,11 +1,28 @@
+/*!
+#ua-parser for rust
+This is a user agent parser for Rust based on
+[ua-parser](https://github.com/ua-parser).
+
+##Usage example
+
+```rust
+let agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3".to_string();
+let p = parser::Parser::new().unwrap();
+let c = p.parse(agent);
+
+println!("{:?}",c);
+ //Output: Client { user_agent: UserAgent { family: "Mobile Safari", major: Some("5"), minor: Some("1"), patch: None }, os: OS { family: "iOS", major: Some("5"), minor: Some("1"), patch: Some("1"), patch_minor: None }, device: Device { family: "iPhone", brand: Some("Apple"), model: Some("iPhone") } }
+```
+*/
+
 extern crate yaml_rust;
 extern crate regex;
 
 pub mod parser;
-mod client;
-mod ua;
-mod os;
-mod device;
+pub mod client;
+pub mod ua;
+pub mod os;
+pub mod device;
 mod result;
 mod yaml;
 
@@ -21,6 +38,7 @@ mod test {
         let agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3".to_string();
         let p = parser::Parser::new().unwrap();
         let c = p.parse(agent);
+        println!("{:?}",c);
         assert_eq!(Client {
             user_agent: UserAgent {
                 family: "Mobile Safari".to_string(),
