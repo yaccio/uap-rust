@@ -3,13 +3,6 @@ use yaml;
 use regex::{Regex, Captures};
 
 ///`Device` contains the device information from the user agent.
-///
-///Example:
-///
-///```
-///"Mozilla/5.0 (iPhone; CPU iPhone OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3"
-///Device { family: "iPhone", brand: Some("Apple"), model: Some("iPhone") }
-///```
 #[derive(Debug, PartialEq, Eq)]
 pub struct Device {
     pub family: String,

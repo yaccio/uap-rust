@@ -3,13 +3,6 @@ use yaml;
 use regex::Regex;
 
 ///`OS` contains the operating system information from the user agent.
-///
-///Example:
-///
-///```
-///"Mozilla/5.0 (iPhone; CPU iPhone OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3"
-///OS { family: "iOS", major: Some("5"), minor: Some("1"), patch: Some("1"), patch_minor: None }
-///```
 #[derive(Debug, PartialEq, Eq)]
 pub struct OS {
     pub family: String,

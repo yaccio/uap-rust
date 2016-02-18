@@ -1,13 +1,14 @@
 [package]
 name = "uap-rust"
-version = "0.0.1"
+version = "0.0.3"
 authors = ["Martin <martin@yacc.io>"]
 description = "User agent parser library for Rust based on the ua-parser project"
 
 license = "MIT"
-license-file = "LICENSE"
 readme = "README.md"
 repository = "https://github.com/yaccio/uap-rust"
+documentation = "https://mrbechcrates.github.io/uap-rust-doc/uap_rust/index.html"
+keywords = ["user", "agent"]
 
 
 [dependencies]

@@ -6,8 +6,9 @@ This is a user agent parser for Rust based on
 ##Usage example
 
 ```rust
+use uap_rust::parser::Parser;
 let agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3".to_string();
-let p = parser::Parser::new().unwrap();
+let p = Parser::new().unwrap();
 let c = p.parse(agent);
 
 println!("{:?}",c);
