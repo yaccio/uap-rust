@@ -39,11 +39,11 @@ impl Parser {
         let docs = try!(YamlLoader::load_from_str(&s));
         let p = Parser {
             devices_regex: yaml::from_map(&docs[0],"device_parsers")
-                .map(|y| yaml::map_over_arr(y, DeviceParser::from_yaml)).unwrap(),
+                .map(|y| yaml::filter_map_over_arr(y, DeviceParser::from_yaml)).unwrap(),
             ua_regex: yaml::from_map(&docs[0],"user_agent_parsers")
-                .map(|y| yaml::map_over_arr(y, UserAgentParser::from_yaml)).unwrap(),
+                .map(|y| yaml::filter_map_over_arr(y, UserAgentParser::from_yaml)).unwrap(),
             os_regex: yaml::from_map(&docs[0],"os_parsers")
-                .map(|y| yaml::map_over_arr(y, OSParser::from_yaml)).unwrap(),
+                .map(|y| yaml::filter_map_over_arr(y, OSParser::from_yaml)).unwrap(),
         };
         Ok(p)
     }
@@ -75,6 +75,7 @@ impl Parser {
             family: "Other".to_string(),
             model: None,
             brand: None,
+            regex: None,
         });
         let oss = self.os_regex.iter().filter_map(|d| d.parse(agent.clone())).next();
         let o = oss.unwrap_or(OS {
